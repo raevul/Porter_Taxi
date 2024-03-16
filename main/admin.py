@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Car
+
+
+class CarAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title', )}
+
+
+admin.site.register(Car, CarAdmin)
