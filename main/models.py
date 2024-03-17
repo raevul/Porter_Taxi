@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Car(models.Model):
@@ -15,3 +16,6 @@ class Car(models.Model):
         ordering = ('title', )
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+    def get_absolute_url(self):
+        return reverse('service_detail', kwargs={'slug': self.slug})

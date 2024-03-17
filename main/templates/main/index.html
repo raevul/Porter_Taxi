@@ -31,7 +31,7 @@
                 {% endif %}
                 <div class="col">
                     <div class="card">
-                        <img src="{{ service.image.url }}" class="card-img-top" alt="...">
+                        <img src="{{ service.image.url }}" class="card-img-top original-size" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ service.title }}</h5>
                             <p class="card-price">{{ service.price }} сомов/час</p>
@@ -40,7 +40,10 @@
                             {% else %}
                                 <p class="card-text">До {{ service.weight }} тонн(ы)</p>
                             {% endif %}
-                            <button type="button" class="btn btn-primary orderBtn" data-product-image="{{ service.image.url }}" data-product-name="{{ service.title }}" data-product-price="{{ service.price }}">Заказать</button>
+                            <div class="button-container">
+                                <button type="button" class="btn btn-primary orderBtn" data-product-url="{{ service_url }}" data-product-name="{{ service.title }}" data-product-price="{{ service.price }}">Заказать</button>
+                                <a href="{{ service.get_absolute_url }}" class="btn btn-info">Подробнее</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,27 +59,27 @@
     <script>
     document.querySelectorAll('.orderBtn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            var productImage = this.getAttribute('data-product-image');
             var productName = this.getAttribute('data-product-name');
             var productPrice = this.getAttribute('data-product-price');
-            var phoneNumber = '996702813002';
+            var productUrl = this.getAttribute('data-product-url');
+            var phoneNumber = '996708614148';
 
-            // Создание HTML-разметки для сообщения
-            var message = '<strong>Хочу заказать:</strong> ' + productName + ', <strong>Цена:</strong> ' + productPrice + '<br>';
-            message += '<img src="' + productImage + '" alt="Product Image" style="max-width: 200px;"><br>';
-            message += 'Изображение: ' + productImage;
+            // Формирование текстового сообщения для WhatsApp с информацией о товаре
+            var message = 'Хочу заказать: ' + productName + ', Цена: ' + productPrice;
 
-            // Кодирование только текста сообщения для URL
+            // Добавление ссылки на детальную страницу сервиса в сообщение
+            message += '\nПодробнее: ' + productUrl;
+
+            // Кодирование сообщения для URL
             var encodedMessage = encodeURIComponent(message);
-            // Формирование ссылки WhatsApp
+
+            // Формирование ссылки WhatsApp с параметрами
             var whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
 
             // Открытие ссылки в новом окне
             window.open(whatsappUrl, '_blank');
         });
     });
-</script>
-
-
+    </script>
 
 {% endblock %}
