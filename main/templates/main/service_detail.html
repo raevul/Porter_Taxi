@@ -7,9 +7,9 @@
         <img src="{{ service.image.url }}" class="img-fluid" alt="..." style="max-width: 100%; max-height: 100%;">
       </div>
       <div class="card-body">
-            <h5 class="card-title">{{ service.title }}</h5>
-            <p class="card-text">{{ service.price }} сомов/час</p>
-            <p class="card-text"><small class="text-muted">До {{ service.weight }} тонн(ы)</small></p>
+            <h4 class="card-title">{{ service.title }}</h4>
+            <h6 class="card-text">{{ service.price }} сомов/час</h6>
+            <h6 class="card-text"><small class="text-muted">До {{ service.weight }} тонн(ы)</small></h6>
             <button type="button" class="btn btn-primary orderBtn" data-product-url="{{ service_url }}" data-product-name="{{ service.title }}" data-product-price="{{ service.price }}">Заказать</button>
       </div>
     </div>
@@ -22,11 +22,8 @@
                 var productUrl = this.getAttribute('data-product-url');
                 var phoneNumber = '996708614148';
 
-                // Формирование текстового сообщения для WhatsApp с информацией о товаре
-                var message = 'Хочу заказать: ' + productName + ', Цена: ' + productPrice;
-
-                // Добавление ссылки на детальную страницу сервиса в сообщение
-                message += '\nПодробнее: ' + productUrl;
+                // Формирование текстового сообщения для WhatsApp с информацией о товаре и ссылкой на его страницу
+                var message = 'Хочу заказать: ' + productName + ', Цена: ' + productPrice + '. Подробнее: ' + productUrl;
 
                 // Кодирование сообщения для URL
                 var encodedMessage = encodeURIComponent(message);
@@ -39,4 +36,5 @@
             });
         });
     </script>
+
 {% endblock %}

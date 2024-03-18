@@ -21,11 +21,6 @@ class ServicesView(View):
         return render(request, "main/index.html", context=context)
 
 
-class AboutView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'main/about.html')
-
-
 class ServiceDetailView(View):
     def get(self, request, *args, **kwargs):
         try:
