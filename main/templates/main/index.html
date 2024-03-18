@@ -56,6 +56,30 @@
         {% endif %}
     </section>
 
+    <script>
+        document.querySelectorAll('.orderBtn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var productName = this.getAttribute('data-product-name');
+                var productPrice = this.getAttribute('data-product-price');
+                var productUrl = this.getAttribute('data-product-url');
+                var phoneNumber = '996708614148';
+
+                // Формирование текстового сообщения для WhatsApp с информацией о товаре
+                var message = 'Хочу заказать: ' + productName + ', Цена: ' + productPrice + '\n';
+                message += 'Подробнее: ' + productUrl;
+
+                // Кодирование сообщения для URL
+                var encodedMessage = encodeURIComponent(message);
+
+                // Формирование ссылки WhatsApp с параметрами
+                var whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
+
+                // Открытие ссылки в новом окне
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+
     <section class="container3" id="about">
         <h2>О нашей компании</h2>
         <p>Мы - компания, созданная с целью обеспечить наших клиентов надежными и качественными услугами в сфере транспорта, перевозок и доставки. Наша команда специализируется на предоставлении услуг такси, переездов, грузоперевозок, доставки грузов и многих других транспортных услуг.</p>
@@ -75,31 +99,5 @@
         </ul>
         <h4>Если вам нужны надежные транспортные услуги, обратитесь к нам! Мы всегда готовы помочь вам с вашими перевозками и доставкой.</h4>
     </section>
-
-    <script>
-    document.querySelectorAll('.orderBtn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var productName = this.getAttribute('data-product-name');
-            var productPrice = this.getAttribute('data-product-price');
-            var productUrl = this.getAttribute('data-product-url');
-            var phoneNumber = '996708614148';
-
-            // Формирование текстового сообщения для WhatsApp с информацией о товаре
-            var message = 'Хочу заказать: ' + productName + ', Цена: ' + productPrice;
-
-            // Добавление ссылки на детальную страницу сервиса в сообщение
-            message += '\nПодробнее: ' + productUrl;
-
-            // Кодирование сообщения для URL
-            var encodedMessage = encodeURIComponent(message);
-
-            // Формирование ссылки WhatsApp с параметрами
-            var whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
-
-            // Открытие ссылки в новом окне
-            window.open(whatsappUrl, '_blank');
-        });
-    });
-    </script>
 
 {% endblock %}
