@@ -44,7 +44,8 @@
                                 <p class="card-text">До {{ service.weight }} тонн(ы)</p>
                             {% endif %}
                             <div class="button-container">
-                                <button type="button" class="btn btn-primary orderBtn" data-product-url="{{ service_url }}" data-product-name="{{ service.title }}" data-product-price="{{ service.price }}">Заказать</button>
+                                <button type="button" class="btn btn-primary orderBtn" data-product-url="{{ service_url }}" 
+                                data-product-name="{{ service.title }}" data-product-price="{{ service.price }}">Заказать</button>
                                 <a href="{{ service.get_absolute_url }}" class="btn btn-info">Подробнее</a>
                             </div>
                         </div>
